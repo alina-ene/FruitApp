@@ -13,3 +13,7 @@ struct Fruit: Codable {
     let price: Int
     let weight: Int
 }
+
+struct FruitBasket: Codable {
+    let fruit: [Fruit]
+}

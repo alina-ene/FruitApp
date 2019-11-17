@@ -14,13 +14,26 @@ class ListViewController: UIViewController, Storyboarded {
     
     var presenter: ListViewPresentable!
 
+    private var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = presenter.sectionTitle
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: Any) {
+        presenter.refreshList()
     }
 
-
+    func reloadList() {
+        refreshControl.endRefreshing()
+        tableView.reloadData()
+    }
 }
 
 extension ListViewController: UITableViewDelegate {

@@ -16,17 +16,32 @@ protocol ListViewPresentable: Presentable {
     func text(for rowIndex: Int) -> String?
     var sectionTitle: String { get }
     func showDetail(for rowIndex: Int)
+    func refreshList()
 }
 
 class ListViewPresenter: ListViewPresentable {
     
     var sectionTitle: String = "Fruit App"
     var coordinator: AppCoordinator
-    private var fruitList: [Fruit] = [Fruit(type: "applE", price: 12, weight: 12)]
+    private var fruitList: [Fruit] = [] {
+        didSet {
+            coordinator.reloadList()
+        }
+    }
     
     init(coordinator: AppCoordinator) {
         self.coordinator = coordinator
+        refreshList()
     }
+    
+    func refreshList() {
+        QueryManager().loadFruitList { (fruitBasket: FruitBasket?, errorMessage: String) in
+            if let basket = fruitBasket {
+                self.fruitList = basket.fruit
+            }
+        }
+    }
+    
 
     func rowCount(for section: Int) -> Int {
         return fruitList.count

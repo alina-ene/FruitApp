@@ -30,6 +30,12 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
+    func reloadList() {
+        if let listVC = navigationController.viewControllers.first as? ListViewController {
+            listVC.reloadList()
+        }
+    }
+    
     func showDetail(presenter: DetailViewPresentable) {
         let vc = DetailViewController.instantiate()
         vc.presenter = presenter
