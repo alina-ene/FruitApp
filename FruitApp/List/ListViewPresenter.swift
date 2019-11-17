@@ -8,22 +8,22 @@
 
 import Foundation
 
-protocol Presentable {
-}
-
-protocol ListViewPresentable: Presentable {
+protocol ListViewPresentable {
     func rowCount(for section: Int) -> Int
     func text(for rowIndex: Int) -> String?
     var sectionTitle: String { get }
+    var refreshControlMessage: String { get }
     func showDetail(for rowIndex: Int)
     func refreshList()
+    var fruitList: [Fruit] { get set }
 }
 
 class ListViewPresenter: ListViewPresentable {
     
-    var sectionTitle: String = "Fruit App"
+    var refreshControlMessage = "Pull to refresh"
+    var sectionTitle: String = "Fruit Basket"
     var coordinator: AppCoordinator
-    private var fruitList: [Fruit] = [] {
+    var fruitList: [Fruit] = [] {
         didSet {
             coordinator.reloadList()
         }
@@ -42,7 +42,6 @@ class ListViewPresenter: ListViewPresentable {
         }
     }
     
-
     func rowCount(for section: Int) -> Int {
         return fruitList.count
     }

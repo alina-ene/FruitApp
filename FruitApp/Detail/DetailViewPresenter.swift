@@ -11,25 +11,36 @@ import Foundation
 protocol DetailViewPresentable {
     var fruitDetailCount: Int { get }
     func text(for index: Int) -> String?
+    var fruit: Fruit { get set }
 }
 
 class DetailViewPresenter: DetailViewPresentable {
  
     var fruitDetailCount = 3
-    private let fruit: Fruit
+    var fruit: Fruit
     
     init(fruit: Fruit) {
         self.fruit = fruit
     }
     
+    //DetailVP decides the order of the displayed fruit details' labels
     func text(for index: Int) -> String? {
         switch index {
         case 0:
             return fruit.type.capitalized
         case 1:
-            return fruit.price.description
+            
+            let price = fruit.price
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.locale = Locale(identifier: "en_UK")
+            let formattedString = formatter.string(from: price/100 as NSNumber)
+            return formattedString
         case 2:
-            return fruit.weight.description
+            
+            let weightGrams = fruit.weight
+            let weightKg = weightGrams/1000
+            return "\(weightKg)KG"
         default:
             return nil
         }

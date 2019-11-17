@@ -21,7 +21,7 @@ class ListViewController: UIViewController, Storyboarded {
 
         title = presenter.sectionTitle
         
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: presenter.refreshControlMessage)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
@@ -37,24 +37,24 @@ class ListViewController: UIViewController, Storyboarded {
 }
 
 extension ListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.showDetail(for: indexPath.row)
     }
 }
 
 extension ListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.rowCount(for: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as? ListViewCell {
-         
             cell.fruitName = presenter.text(for: indexPath.row)
            return cell
         }
         return UITableViewCell()
     }
-    
-    
+
 }

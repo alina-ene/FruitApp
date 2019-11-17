@@ -10,8 +10,8 @@ import Foundation
 
 struct Fruit: Codable {
     let type: String
-    let price: Int
-    let weight: Int
+    let price: Double
+    let weight: Double
 }
 
 struct FruitBasket: Codable {
