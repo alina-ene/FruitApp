@@ -25,7 +25,7 @@ class ListViewPresenter: ListViewPresentable {
     }
 
     func rowCount(for section: Int) -> Int {
-        return 1
+        return 5
     }
     
     func fruitName(for rowIndex: Int) -> String {

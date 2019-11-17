@@ -15,25 +15,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CPM-dw-JgX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CPM-dw-JgX">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FruitApp.ListViewCell" id="SVF-30-9Ve" customClass="ListViewCell" customModule="FruitApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="74.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="73.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SVF-30-9Ve" id="alE-gV-rfv">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="74.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfG-fk-Er2">
-                                                    <rect key="frame" x="40" y="21" width="334" height="32.5"/>
-                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="40" y="21" width="334" height="31.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="29"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="RfG-fk-Er2" secondAttribute="bottom" constant="10" id="DwR-yo-kwA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="RfG-fk-Er2" secondAttribute="trailing" constant="20" id="KQZ-V8-YaS"/>
@@ -52,7 +53,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CPM-dw-JgX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gol-31-uF4"/>
                             <constraint firstAttribute="bottom" secondItem="CPM-dw-JgX" secondAttribute="bottom" id="iAB-f3-SPk"/>
@@ -76,9 +77,43 @@
                     <view key="view" contentMode="scaleToFill" id="l1z-kq-WqN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-QB-9g8">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R1-dD-GWo">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="259.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2m-Rt-TR8">
+                                        <rect key="frame" x="0.0" y="279.5" width="374" height="259"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAN-qr-15N">
+                                        <rect key="frame" x="0.0" y="558.5" width="374" height="259.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PPR-QB-9g8" firstAttribute="top" secondItem="uSD-QS-dtn" secondAttribute="top" id="JjD-Yg-F0U"/>
+                            <constraint firstItem="uSD-QS-dtn" firstAttribute="trailing" secondItem="PPR-QB-9g8" secondAttribute="trailing" constant="20" id="TxS-GJ-aVO"/>
+                            <constraint firstItem="PPR-QB-9g8" firstAttribute="leading" secondItem="uSD-QS-dtn" secondAttribute="leading" constant="20" id="iRJ-zp-n6v"/>
+                            <constraint firstItem="uSD-QS-dtn" firstAttribute="bottom" secondItem="PPR-QB-9g8" secondAttribute="bottom" id="suO-FW-Gsa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uSD-QS-dtn"/>
                     </view>
+                    <connections>
+                        <outlet property="stackView" destination="PPR-QB-9g8" id="tx2-gl-7IE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0F4-DO-cUn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

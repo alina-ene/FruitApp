@@ -10,4 +10,6 @@ import UIKit
 
 class DetailViewController: UIViewController, Storyboarded {
     
+    @IBOutlet private var stackView: UIStackView!
+    
 }

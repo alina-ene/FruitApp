@@ -10,6 +10,9 @@ import Foundation
 
 class QueryManager {
     
+    private let fruitListUrl = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
+    private let statsUrl = " https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats"
+    
     func loadFruitList() -> [Fruit] {
         
         return []

@@ -11,18 +11,27 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    private lazy var mainSceneNavController: UINavigationController = {
+        
+        let navController = UINavigationController()
+        navController.navigationBar.isTranslucent = true
+        navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.tintColor = .white
+        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPurple, NSAttributedString.Key.font: UIFont(name: "MarkerFelt-Thin", size: 20)]
+        return navController
+    }()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         if let windowScene = scene as? UIWindowScene {
             
-            let navController = UINavigationController()
-            let coordinator = AppCoordinator(navigationController: navController)
+            let coordinator = AppCoordinator(navigationController: mainSceneNavController)
             coordinator.start()
-            
+        
             let window = UIWindow(windowScene: windowScene)
             self.window = window
-            self.window?.rootViewController = navController
+            self.window?.rootViewController = mainSceneNavController
             self.window?.makeKeyAndVisible()
         }
     }
