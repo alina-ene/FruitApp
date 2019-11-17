@@ -37,7 +37,7 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as? ListViewCell {
          
-            cell.fruitName = presenter.fruitName(for: indexPath.row)
+            cell.fruitName = presenter.text(for: indexPath.row)
            return cell
         }
         return UITableViewCell()

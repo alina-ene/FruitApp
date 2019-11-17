@@ -115,21 +115,11 @@
 		AC8CEBC023815F9400944A90 /* FruitApp */ = {
 			isa = PBXGroup;
 			children = (
-				AC8CEBC123815F9400944A90 /* AppDelegate.swift */,
-				AC8CEBC323815F9400944A90 /* SceneDelegate.swift */,
-				AC8CEBF123818BE700944A90 /* AppCoordinator.swift */,
-				AC8CEBF323818C7300944A90 /* Storyboarded.swift */,
-				AC8CEBC523815F9400944A90 /* ListViewController.swift */,
-				AC8CEBF9238192DA00944A90 /* ListViewCell.swift */,
-				AC8CEBF72381915900944A90 /* ListViewPresenter.swift */,
+				AC8CEC042381DA5800944A90 /* Resources */,
+				AC8CEC032381D9FB00944A90 /* List */,
+				AC8CEC022381D9C000944A90 /* Detail */,
+				AC8CEC012381D9A200944A90 /* Main */,
 				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
-				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
-				AC8CEBF523818F3600944A90 /* DetailViewController.swift */,
-				AC8CEBFF2381CDB400944A90 /* DetailViewPresenter.swift */,
-				AC8CEBC723815F9400944A90 /* Main.storyboard */,
-				AC8CEBCA23815F9700944A90 /* Assets.xcassets */,
-				AC8CEBCC23815F9700944A90 /* LaunchScreen.storyboard */,
-				AC8CEBCF23815F9700944A90 /* Info.plist */,
 			);
 			path = FruitApp;
 			sourceTree = "<group>";
@@ -150,6 +140,48 @@
 				AC8CEBE523815F9800944A90 /* Info.plist */,
 			);
 			path = FruitAppUITests;
+			sourceTree = "<group>";
+		};
+		AC8CEC012381D9A200944A90 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AC8CEBC123815F9400944A90 /* AppDelegate.swift */,
+				AC8CEBC323815F9400944A90 /* SceneDelegate.swift */,
+				AC8CEBF323818C7300944A90 /* Storyboarded.swift */,
+				AC8CEBF123818BE700944A90 /* AppCoordinator.swift */,
+				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		AC8CEC022381D9C000944A90 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AC8CEBF523818F3600944A90 /* DetailViewController.swift */,
+				AC8CEBFF2381CDB400944A90 /* DetailViewPresenter.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		AC8CEC032381D9FB00944A90 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				AC8CEBC523815F9400944A90 /* ListViewController.swift */,
+				AC8CEBF72381915900944A90 /* ListViewPresenter.swift */,
+				AC8CEBF9238192DA00944A90 /* ListViewCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		AC8CEC042381DA5800944A90 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC8CEBC723815F9400944A90 /* Main.storyboard */,
+				AC8CEBCC23815F9700944A90 /* LaunchScreen.storyboard */,
+				AC8CEBCF23815F9700944A90 /* Info.plist */,
+				AC8CEBCA23815F9700944A90 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,7 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 676VA3E69T;
-				INFOPLIST_FILE = FruitApp/Info.plist;
+				INFOPLIST_FILE = FruitApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -486,7 +518,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 676VA3E69T;
-				INFOPLIST_FILE = FruitApp/Info.plist;
+				INFOPLIST_FILE = FruitApp/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

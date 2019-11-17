@@ -13,7 +13,7 @@ protocol Presentable {
 
 protocol ListViewPresentable: Presentable {
     func rowCount(for section: Int) -> Int
-    func fruitName(for rowIndex: Int) -> String?
+    func text(for rowIndex: Int) -> String?
     var sectionTitle: String { get }
     func showDetail(for rowIndex: Int)
 }
@@ -32,7 +32,7 @@ class ListViewPresenter: ListViewPresentable {
         return fruitList.count
     }
     
-    func fruitName(for rowIndex: Int) -> String? {
+    func text(for rowIndex: Int) -> String? {
         if rowIndex < fruitList.count {
             return fruitList[rowIndex].type.capitalized
         }
