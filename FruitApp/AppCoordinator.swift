@@ -26,8 +26,14 @@ class AppCoordinator: Coordinator {
     
     func start() {
         let vc = ListViewController.instantiate()
+        vc.presenter = ListViewPresenter(coordinator: self)
         navigationController.pushViewController(vc, animated: false)
     }
     
+    func showFruitDetail() {
+        let vc = DetailViewController.instantiate()
+//        vc.presenter = DetailViewPresenter()
+        navigationController.pushViewController(vc, animated: true)
+    }
     
 }

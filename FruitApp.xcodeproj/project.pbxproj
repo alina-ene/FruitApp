@@ -17,6 +17,11 @@
 		AC8CEBE423815F9800944A90 /* FruitAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBE323815F9800944A90 /* FruitAppUITests.swift */; };
 		AC8CEBF223818BE700944A90 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF123818BE700944A90 /* AppCoordinator.swift */; };
 		AC8CEBF423818C7300944A90 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF323818C7300944A90 /* Storyboarded.swift */; };
+		AC8CEBF623818F3600944A90 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF523818F3600944A90 /* DetailViewController.swift */; };
+		AC8CEBF82381915900944A90 /* ListViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF72381915900944A90 /* ListViewPresenter.swift */; };
+		AC8CEBFA238192DA00944A90 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF9238192DA00944A90 /* ListViewCell.swift */; };
+		AC8CEBFC23819E3800944A90 /* QueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBFB23819E3800944A90 /* QueryManager.swift */; };
+		AC8CEBFE23819E7400944A90 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBFD23819E7400944A90 /* Fruit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		AC8CEBE523815F9800944A90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC8CEBF123818BE700944A90 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		AC8CEBF323818C7300944A90 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		AC8CEBF523818F3600944A90 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		AC8CEBF72381915900944A90 /* ListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresenter.swift; sourceTree = "<group>"; };
+		AC8CEBF9238192DA00944A90 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
+		AC8CEBFB23819E3800944A90 /* QueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryManager.swift; sourceTree = "<group>"; };
+		AC8CEBFD23819E7400944A90 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,11 @@
 				AC8CEBF123818BE700944A90 /* AppCoordinator.swift */,
 				AC8CEBF323818C7300944A90 /* Storyboarded.swift */,
 				AC8CEBC523815F9400944A90 /* ListViewController.swift */,
+				AC8CEBF9238192DA00944A90 /* ListViewCell.swift */,
+				AC8CEBF72381915900944A90 /* ListViewPresenter.swift */,
+				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
+				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
+				AC8CEBF523818F3600944A90 /* DetailViewController.swift */,
 				AC8CEBC723815F9400944A90 /* Main.storyboard */,
 				AC8CEBCA23815F9700944A90 /* Assets.xcassets */,
 				AC8CEBCC23815F9700944A90 /* LaunchScreen.storyboard */,
@@ -265,11 +280,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC8CEBFE23819E7400944A90 /* Fruit.swift in Sources */,
 				AC8CEBF223818BE700944A90 /* AppCoordinator.swift in Sources */,
 				AC8CEBC623815F9400944A90 /* ListViewController.swift in Sources */,
 				AC8CEBF423818C7300944A90 /* Storyboarded.swift in Sources */,
+				AC8CEBF623818F3600944A90 /* DetailViewController.swift in Sources */,
+				AC8CEBFA238192DA00944A90 /* ListViewCell.swift in Sources */,
+				AC8CEBFC23819E3800944A90 /* QueryManager.swift in Sources */,
 				AC8CEBC223815F9400944A90 /* AppDelegate.swift in Sources */,
 				AC8CEBC423815F9400944A90 /* SceneDelegate.swift in Sources */,
+				AC8CEBF82381915900944A90 /* ListViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
