@@ -10,6 +10,6 @@ import Foundation
 
 struct Fruit: Codable {
     let type: String
-    let price: String
-    let weight: String
+    let price: Int
+    let weight: Int
 }

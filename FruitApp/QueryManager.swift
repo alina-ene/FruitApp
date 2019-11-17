@@ -14,7 +14,7 @@ class QueryManager {
     private let statsUrl = " https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats"
     
     func loadFruitList() -> [Fruit] {
-        
+        //var user = JSONDecoder().decode(User.self, from: jsonData)
         return []
     }
     

@@ -8,31 +8,41 @@
 
 import Foundation
 
-protocol ListViewPresentable {
+protocol Presentable {
+}
+
+protocol ListViewPresentable: Presentable {
     func rowCount(for section: Int) -> Int
-    func fruitName(for rowIndex: Int) -> String
+    func fruitName(for rowIndex: Int) -> String?
     var sectionTitle: String { get }
-    func showFruitDetail()
+    func showDetail(for rowIndex: Int)
 }
 
 class ListViewPresenter: ListViewPresentable {
     
     var sectionTitle: String = "Fruit App"
     var coordinator: AppCoordinator
+    private var fruitList: [Fruit] = [Fruit(type: "applE", price: 12, weight: 12)]
     
     init(coordinator: AppCoordinator) {
         self.coordinator = coordinator
     }
 
     func rowCount(for section: Int) -> Int {
-        return 5
+        return fruitList.count
     }
     
-    func fruitName(for rowIndex: Int) -> String {
-        return "Fruit"
+    func fruitName(for rowIndex: Int) -> String? {
+        if rowIndex < fruitList.count {
+            return fruitList[rowIndex].type.capitalized
+        }
+        return nil
     }
 
-    func showFruitDetail() {
-        coordinator.showFruitDetail()
+    func showDetail(for rowIndex: Int) {
+        if rowIndex < fruitList.count {
+            let detailPresenter = DetailViewPresenter(fruit: fruitList[rowIndex])
+            coordinator.showDetail(presenter: detailPresenter)
+        }
     }
 }

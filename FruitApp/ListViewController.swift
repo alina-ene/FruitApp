@@ -25,7 +25,7 @@ class ListViewController: UIViewController, Storyboarded {
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.showFruitDetail()
+        presenter.showDetail(for: indexPath.row)
     }
 }
 

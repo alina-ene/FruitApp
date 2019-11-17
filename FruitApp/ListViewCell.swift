@@ -14,7 +14,7 @@ protocol ReusableView: class {
 
 extension ReusableView where Self: UIView {
     static var identifier: String {
-        return NSStringFromClass(self)
+        return String(describing: self)
     }
 }
 
@@ -25,17 +25,10 @@ class ListViewCell: UITableViewCell {
     
     @IBOutlet private var titleLabel: UILabel!
     
-    var fruitName: String = "" {
+    var fruitName: String? {
         didSet {
             titleLabel.text = fruitName
         }
     }
-    
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+
 }

@@ -11,5 +11,17 @@ import UIKit
 class DetailViewController: UIViewController, Storyboarded {
     
     @IBOutlet private var stackView: UIStackView!
+    var presenter: DetailViewPresentable!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        for i in 0...presenter.fruitDetailCount-1 {
+            let label = UILabel()
+            label.text = presenter.text(for: i)
+            label.font = UIFont(name: "MarkerFelt-Thin", size: 30)
+            label.textColor = .white
+            stackView.addArrangedSubview(label)
+        }
+    }
 }

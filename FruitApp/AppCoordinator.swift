@@ -30,9 +30,9 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func showFruitDetail() {
+    func showDetail(presenter: DetailViewPresentable) {
         let vc = DetailViewController.instantiate()
-//        vc.presenter = DetailViewPresenter()
+        vc.presenter = presenter
         navigationController.pushViewController(vc, animated: true)
     }
     

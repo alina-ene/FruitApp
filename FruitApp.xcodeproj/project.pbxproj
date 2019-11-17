@@ -22,6 +22,7 @@
 		AC8CEBFA238192DA00944A90 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF9238192DA00944A90 /* ListViewCell.swift */; };
 		AC8CEBFC23819E3800944A90 /* QueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBFB23819E3800944A90 /* QueryManager.swift */; };
 		AC8CEBFE23819E7400944A90 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBFD23819E7400944A90 /* Fruit.swift */; };
+		AC8CEC002381CDB400944A90 /* DetailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBFF2381CDB400944A90 /* DetailViewPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		AC8CEBF9238192DA00944A90 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		AC8CEBFB23819E3800944A90 /* QueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryManager.swift; sourceTree = "<group>"; };
 		AC8CEBFD23819E7400944A90 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		AC8CEBFF2381CDB400944A90 /* DetailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
 				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
 				AC8CEBF523818F3600944A90 /* DetailViewController.swift */,
+				AC8CEBFF2381CDB400944A90 /* DetailViewPresenter.swift */,
 				AC8CEBC723815F9400944A90 /* Main.storyboard */,
 				AC8CEBCA23815F9700944A90 /* Assets.xcassets */,
 				AC8CEBCC23815F9700944A90 /* LaunchScreen.storyboard */,
@@ -290,6 +293,7 @@
 				AC8CEBC223815F9400944A90 /* AppDelegate.swift in Sources */,
 				AC8CEBC423815F9400944A90 /* SceneDelegate.swift in Sources */,
 				AC8CEBF82381915900944A90 /* ListViewPresenter.swift in Sources */,
+				AC8CEC002381CDB400944A90 /* DetailViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
