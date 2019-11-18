@@ -28,14 +28,16 @@ class ListViewPresenter: ListViewPresentable {
             coordinator.reloadList()
         }
     }
+    var queryManager: QueryManager
     
     init(coordinator: AppCoordinator) {
         self.coordinator = coordinator
+        self.queryManager = QueryManager()
         refreshList()
     }
     
     func refreshList() {
-        QueryManager().loadFruitList { (fruitBasket: FruitBasket?, errorMessage: String) in
+        queryManager.loadFruitList { (fruitBasket: FruitBasket?, errorMessage: String) in
             if let basket = fruitBasket {
                 self.fruitList = basket.fruit
             }

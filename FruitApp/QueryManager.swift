@@ -8,16 +8,23 @@
 
 import UIKit
 
+
 enum StatEvent: String {
     case load = "load"
     case display = "display"
     case error = "error"
 }
 
+enum StatParamKey: String {
+    case event = "event"
+    case data = "data"
+}
+
+enum FruitUrl: String {
+    case list = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
+    case stats = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats"
+}
 class QueryManager {
-    
-    private let fruitListUrl = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
-    private let statsUrl = " https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats"
     
     var dataTask: URLSessionDataTask?
     var statDataTask: URLSessionDataTask?
@@ -30,14 +37,21 @@ class QueryManager {
     func loadFruitList(completion: @escaping FruitQueryResult) {
         dataTask?.cancel()
         
-        if var urlComponents = URLComponents(string: fruitListUrl) {
+        if let urlComponents = URLComponents(string: FruitUrl.list.rawValue) {
             guard let url = urlComponents.url else {
                 return
             }
-            
+            let startDate = Date()
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
             dataTask = defaultSession.dataTask(with: url) { [weak self] data, response, error in
                 defer {
                     self?.dataTask = nil
+                }
+                let timeInterval = Int(Double(Date().timeIntervalSince(startDate)) * 1000)
+                self?.sendStat(event: .load, data: String(timeInterval)) { (hasBeenSent: Bool, errorMessage: String) in
+                    print(hasBeenSent)
+                    dispatchGroup.leave()
                 }
                 
                 if let error = error {
@@ -45,8 +59,10 @@ class QueryManager {
                 } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     do {
                         let basket = try JSONDecoder().decode(FruitBasket.self, from: data)
-                        DispatchQueue.main.async {
-                            completion(basket, self?.errorMessage ?? "")
+                        dispatchGroup.notify(queue: DispatchQueue.global()) {
+                            DispatchQueue.main.async {
+                                completion(basket, self?.errorMessage ?? "")
+                            }
                         }
                     } catch let parseError as NSError {
                         self?.errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
@@ -62,9 +78,9 @@ class QueryManager {
     func sendStat(event: StatEvent, data: String, completion: @escaping StatQueryResult) {
         statDataTask?.cancel()
         
-        if var urlComponents = URLComponents(string: statsUrl) {
-            let queryItemToken = URLQueryItem(name: "event", value: event.rawValue)
-            let queryItemQuery = URLQueryItem(name: "data", value: data)
+        if var urlComponents = URLComponents(string: FruitUrl.stats.rawValue) {
+            let queryItemToken = URLQueryItem(name: StatParamKey.event.rawValue, value: event.rawValue)
+            let queryItemQuery = URLQueryItem(name: StatParamKey.data.rawValue, value: data)
             urlComponents.queryItems = [queryItemToken, queryItemQuery]
             guard let url = urlComponents.url else {
                 return
