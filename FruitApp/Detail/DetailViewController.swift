@@ -23,5 +23,7 @@ class DetailViewController: UIViewController, Storyboarded {
             label.textColor = .white
             stackView.addArrangedSubview(label)
         }
+        //testing the crash reporting delegate
+//        self.perform("crashme:", with: nil, afterDelay: 10)
     }
 }

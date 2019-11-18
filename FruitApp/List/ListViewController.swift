@@ -11,9 +11,7 @@ import UIKit
 class ListViewController: UIViewController, Storyboarded {
     
     @IBOutlet private var tableView: UITableView!
-    
     var presenter: ListViewPresentable!
-
     private var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {

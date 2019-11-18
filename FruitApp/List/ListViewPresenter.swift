@@ -16,6 +16,7 @@ protocol ListViewPresentable {
     func showDetail(for rowIndex: Int)
     func refreshList()
     var fruitList: [Fruit] { get set }
+    var queryManager: QueryManager { get set }
 }
 
 class ListViewPresenter: ListViewPresentable {
@@ -30,17 +31,24 @@ class ListViewPresenter: ListViewPresentable {
     }
     var queryManager: QueryManager
     
-    init(coordinator: AppCoordinator) {
+    init(coordinator: AppCoordinator, queryManager: QueryManager) {
         self.coordinator = coordinator
-        self.queryManager = QueryManager()
+        self.queryManager = queryManager
         refreshList()
     }
     
     func refreshList() {
-        queryManager.loadFruitList { (fruitBasket: FruitBasket?, errorMessage: String) in
+        queryManager.loadFruitList { (fruitBasket: FruitBasket?, errorMessage: String?) in
             if let basket = fruitBasket {
                 self.fruitList = basket.fruit
             }
+        }
+    }
+    
+    func sendScreenStat() {
+        let ms = ""//compare now to when 
+        queryManager.sendStat(event: .load, data: ms) { (isSuccessful: Bool, error: String?) in
+            
         }
     }
     

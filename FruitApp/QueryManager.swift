@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 enum StatEvent: String {
     case load = "load"
     case display = "display"
@@ -29,10 +28,9 @@ class QueryManager {
     var dataTask: URLSessionDataTask?
     var statDataTask: URLSessionDataTask?
     typealias JSONDictionary = [String: Any]
-    typealias FruitQueryResult = (FruitBasket?, String) -> Void
-    typealias StatQueryResult = (Bool, String) -> Void
+    typealias FruitQueryResult = (FruitBasket?, String?) -> Void
+    typealias StatQueryResult = (Bool, String?) -> Void
     let defaultSession = URLSession(configuration: .default)
-    var errorMessage = ""
     
     func loadFruitList(completion: @escaping FruitQueryResult) {
         dataTask?.cancel()
@@ -49,24 +47,24 @@ class QueryManager {
                     self?.dataTask = nil
                 }
                 let timeInterval = Int(Double(Date().timeIntervalSince(startDate)) * 1000)
-                self?.sendStat(event: .load, data: String(timeInterval)) { (hasBeenSent: Bool, errorMessage: String) in
-                    print(hasBeenSent)
+                self?.sendStat(event: .load, data: String(timeInterval)) { (hasBeenSent: Bool, errorMessage: String?) in
+                    print("\(timeInterval)ms time interval sent as stat for loading fruit basket")
                     dispatchGroup.leave()
                 }
-                
+                var errorMessage: String?
+                var basket: FruitBasket?
                 if let error = error {
-                    self?.errorMessage += "Oops: " + error.localizedDescription
+                    errorMessage = "Request error: " + error.localizedDescription
                 } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     do {
-                        let basket = try JSONDecoder().decode(FruitBasket.self, from: data)
-                        dispatchGroup.notify(queue: DispatchQueue.global()) {
-                            DispatchQueue.main.async {
-                                completion(basket, self?.errorMessage ?? "")
-                            }
-                        }
+                        basket = try JSONDecoder().decode(FruitBasket.self, from: data)
                     } catch let parseError as NSError {
-                        self?.errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
-                        return
+                        errorMessage = "JSONSerialization error: \(parseError.localizedDescription)\n"
+                    }
+                }
+                dispatchGroup.notify(queue: DispatchQueue.global()) {
+                    DispatchQueue.main.async {
+                        completion(basket, errorMessage)
                     }
                 }
             }
@@ -92,9 +90,9 @@ class QueryManager {
                 }
                 
                 if let error = error {
-                    completion(false, "Oops: " + error.localizedDescription)
+                    completion(false, "Request error: " + error.localizedDescription)
                 } else if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                    completion(true, "")
+                    completion(true, nil)
                 }
             }
             
