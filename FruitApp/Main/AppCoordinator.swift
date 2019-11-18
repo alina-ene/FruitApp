@@ -20,8 +20,9 @@ class Coordinator: NSObject {
 
 extension AppCoordinator: CrashEyeDelegate {
     func crashEyeDidCatchCrash(with model: CrashModel) {
-        queryManager.sendStat(event: .error, data: model.reason ?? "unknown app crash") { (isSuccessful: Bool, errorMessage: String?) in
-            self.queryManager.printStatResponse(isSuccessful, errorMessage, "App crash", model.reason ?? "unknown app crash")
+        let data = model.reason ?? "unknown app crash"
+        queryManager.sendStat(event: .error, data: data) { [weak self] (isSuccessful: Bool, errorMessage: String?) in
+            self?.queryManager.printStatResponse(isSuccessful, errorMessage, "App crash", data)
         }
     }
 }

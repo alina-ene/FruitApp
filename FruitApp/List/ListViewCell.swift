@@ -34,9 +34,9 @@ class ListViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        let whiteBackgroundView = UIView(frame:self.frame)
-        whiteBackgroundView.backgroundColor = .systemTeal
-        self.selectedBackgroundView = whiteBackgroundView
+        let customBackgroundView = UIView(frame: frame)
+        customBackgroundView.backgroundColor = .systemTeal
+        selectedBackgroundView = customBackgroundView
     }
     
 }
