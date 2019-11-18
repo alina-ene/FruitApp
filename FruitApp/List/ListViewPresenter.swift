@@ -45,13 +45,6 @@ class ListViewPresenter: ListViewPresentable {
         }
     }
     
-    func sendScreenStat() {
-        let ms = ""//compare now to when 
-        queryManager.sendStat(event: .load, data: ms) { (isSuccessful: Bool, error: String?) in
-            
-        }
-    }
-    
     func rowCount(for section: Int) -> Int {
         return fruitList.count
     }

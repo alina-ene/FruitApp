@@ -23,16 +23,30 @@ enum FruitUrl: String {
     case list = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
     case stats = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats"
 }
+
 class QueryManager {
     
     var dataTask: URLSessionDataTask?
-    var statDataTask: URLSessionDataTask?
     typealias JSONDictionary = [String: Any]
-    typealias FruitQueryResult = (FruitBasket?, String?) -> Void
+    typealias FruitBasketQueryResult = (FruitBasket?, String?) -> Void
     typealias StatQueryResult = (Bool, String?) -> Void
     let defaultSession = URLSession(configuration: .default)
     
-    func loadFruitList(completion: @escaping FruitQueryResult) {
+    var displayStartDate: Date?
+    var displayEndDate: Date? {
+        didSet {
+            if let endDate = displayEndDate, let startDate = displayStartDate {
+                let timeIntervalString = String(timeInterval(endDate: endDate, startDate: startDate))
+                sendStat(event: .display, data: timeIntervalString) { [weak self] (isSuccessful: Bool, errorMessage: String?) in
+                    self?.printStatResponse(isSuccessful, errorMessage, StatEvent.display.rawValue, timeIntervalString)
+                    self?.displayStartDate = nil
+                    self?.displayEndDate = nil
+                }
+            }
+        }
+    }
+    
+    func loadFruitList(completion: @escaping FruitBasketQueryResult) {
         dataTask?.cancel()
         
         if let urlComponents = URLComponents(string: FruitUrl.list.rawValue) {
@@ -46,9 +60,9 @@ class QueryManager {
                 defer {
                     self?.dataTask = nil
                 }
-                let timeInterval = Int(Double(Date().timeIntervalSince(startDate)) * 1000)
-                self?.sendStat(event: .load, data: String(timeInterval)) { (hasBeenSent: Bool, errorMessage: String?) in
-                    print("\(timeInterval)ms time interval sent as stat for loading fruit basket")
+                let timeIntervalString = String(self?.timeInterval(endDate: Date(), startDate: startDate) ?? 0)
+                self?.sendStat(event: .load, data: timeIntervalString) { (isSuccessful: Bool, errorMessage: String?) in
+                    self?.printStatResponse(isSuccessful, errorMessage, "Fruit Basket load",  timeIntervalString)
                     dispatchGroup.leave()
                 }
                 var errorMessage: String?
@@ -60,6 +74,13 @@ class QueryManager {
                         basket = try JSONDecoder().decode(FruitBasket.self, from: data)
                     } catch let parseError as NSError {
                         errorMessage = "JSONSerialization error: \(parseError.localizedDescription)\n"
+                    }
+                }
+                if let error = errorMessage {
+                    let log = #function + " " + error
+                    self?.sendStat(event: .error, data: log) { (isSuccessful: Bool, errorMessage: String?) in
+                        self?.printStatResponse(isSuccessful, errorMessage,  StatEvent.error.rawValue, log)
+                        dispatchGroup.leave()
                     }
                 }
                 dispatchGroup.notify(queue: DispatchQueue.global()) {
@@ -74,8 +95,6 @@ class QueryManager {
     }
     
     func sendStat(event: StatEvent, data: String, completion: @escaping StatQueryResult) {
-        statDataTask?.cancel()
-        
         if var urlComponents = URLComponents(string: FruitUrl.stats.rawValue) {
             let queryItemToken = URLQueryItem(name: StatParamKey.event.rawValue, value: event.rawValue)
             let queryItemQuery = URLQueryItem(name: StatParamKey.data.rawValue, value: data)
@@ -84,10 +103,7 @@ class QueryManager {
                 return
             }
             
-            statDataTask = defaultSession.dataTask(with: url) { [weak self] data, response, error in
-                defer {
-                    self?.statDataTask = nil
-                }
+            let statDataTask = defaultSession.dataTask(with: url) { data, response, error in
                 
                 if let error = error {
                     completion(false, "Request error: " + error.localizedDescription)
@@ -95,9 +111,19 @@ class QueryManager {
                     completion(true, nil)
                 }
             }
-            
-            statDataTask?.resume()
+            statDataTask.resume()
         }
     }
     
+    func timeInterval(endDate: Date, startDate: Date) -> Int {
+        return Int(Double(endDate.timeIntervalSince(startDate)) * 1000)
+    }
+    
+    func printStatResponse(_ isSuccessful: Bool, _ errorMessage: String?, _ event: String, _ data: String) {
+        let output = isSuccessful ? "successfully" : "unsuccessfully"
+        print("\(event) has been \(output) reported - \(data)")
+        if let error = errorMessage {
+            print("Error : \(error)")
+        }
+    }
 }

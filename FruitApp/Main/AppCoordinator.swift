@@ -20,8 +20,8 @@ class Coordinator: NSObject {
 
 extension AppCoordinator: CrashEyeDelegate {
     func crashEyeDidCatchCrash(with model: CrashModel) {
-        queryManager.sendStat(event: .error, data: "error") { (isSuccessful: Bool, error: String?) in
-            print("\(#function) app crash \(model.reason ?? "unknown reason")")
+        queryManager.sendStat(event: .error, data: model.reason ?? "unknown app crash") { (isSuccessful: Bool, errorMessage: String?) in
+            self.queryManager.printStatResponse(isSuccessful, errorMessage, "App crash", model.reason ?? "unknown app crash")
         }
     }
 }
@@ -64,13 +64,11 @@ class AppCoordinator: Coordinator {
 extension AppCoordinator: UINavigationControllerDelegate {
    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print(#function)
-        //queryManager.startDisplayStat()
+        queryManager.displayStartDate = Date()
     }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        print(#function)
-//        queryManager.endDisplayStat()
+        queryManager.displayEndDate = Date()
     }
     
 }

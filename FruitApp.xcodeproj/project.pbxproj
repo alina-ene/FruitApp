@@ -121,8 +121,6 @@
 				AC8CEC032381D9FB00944A90 /* List */,
 				AC8CEC022381D9C000944A90 /* Detail */,
 				AC8CEC012381D9A200944A90 /* Main */,
-				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
-				AC536F182382CA3A0060300B /* CrashEye.swift */,
 			);
 			path = FruitApp;
 			sourceTree = "<group>";
@@ -152,6 +150,8 @@
 				AC8CEBC323815F9400944A90 /* SceneDelegate.swift */,
 				AC8CEBF323818C7300944A90 /* Storyboarded.swift */,
 				AC8CEBF123818BE700944A90 /* AppCoordinator.swift */,
+				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
+				AC536F182382CA3A0060300B /* CrashEye.swift */,
 				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
 			);
 			path = Main;
