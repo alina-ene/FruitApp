@@ -1,11 +1,3 @@
-//
-//  CrashEye.swift
-//  FruitApp
-//
-//  Created by Alina Ene on 18/11/2019.
-//  Copyright © 2019 Alina Ene. All rights reserved.
-//
-
 import UIKit
 //
 //  CrashEye.swift

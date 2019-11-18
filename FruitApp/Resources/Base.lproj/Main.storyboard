@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListViewCell" id="SVF-30-9Ve" customClass="ListViewCell" customModule="FruitApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListViewCell" id="SVF-30-9Ve" customClass="ListViewCell" customModule="FruitApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="73.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SVF-30-9Ve" id="alE-gV-rfv">
@@ -33,12 +33,22 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWX-yz-dJW">
+                                                    <rect key="frame" x="0.0" y="71.5" width="414" height="2"/>
+                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="dPM-Yu-V60"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="BWX-yz-dJW" secondAttribute="trailing" id="DM7-hh-PYF"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="RfG-fk-Er2" secondAttribute="bottom" constant="10" id="DwR-yo-kwA"/>
+                                                <constraint firstItem="BWX-yz-dJW" firstAttribute="leading" secondItem="alE-gV-rfv" secondAttribute="leading" id="Fs5-Tl-h3T"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="RfG-fk-Er2" secondAttribute="trailing" constant="20" id="KQZ-V8-YaS"/>
                                                 <constraint firstItem="RfG-fk-Er2" firstAttribute="leading" secondItem="alE-gV-rfv" secondAttribute="leadingMargin" constant="20" id="OOn-dj-mlV"/>
+                                                <constraint firstAttribute="bottom" secondItem="BWX-yz-dJW" secondAttribute="bottom" id="h55-Y2-3o0"/>
                                                 <constraint firstItem="RfG-fk-Er2" firstAttribute="top" secondItem="alE-gV-rfv" secondAttribute="topMargin" constant="10" id="vrA-vR-kOs"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -68,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="86"/>
+            <point key="canvasLocation" x="137.68115942028987" y="85.714285714285708"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="HUF-Mj-zxO">

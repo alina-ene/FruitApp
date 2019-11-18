@@ -27,7 +27,7 @@ class DetailViewPresenter: DetailViewPresentable {
     func text(for index: Int) -> String? {
         switch index {
         case 0:
-            return fruit.type.capitalized
+            return fruit.type.uppercased()
         case 1:
             
             let price = fruit.price

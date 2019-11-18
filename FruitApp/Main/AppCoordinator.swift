@@ -21,11 +21,9 @@ class Coordinator: NSObject {
 extension AppCoordinator: CrashEyeDelegate {
     func crashEyeDidCatchCrash(with model: CrashModel) {
         queryManager.sendStat(event: .error, data: "error") { (isSuccessful: Bool, error: String?) in
-            print("\(#function) app crash \(model.reason)")
+            print("\(#function) app crash \(model.reason ?? "unknown reason")")
         }
     }
-    
-    
 }
 
 class AppCoordinator: Coordinator {
@@ -36,6 +34,10 @@ class AppCoordinator: Coordinator {
         super.init(navigationController: navigationController)
         self.navigationController.delegate = self
         CrashEye.add(delegate: self)
+    }
+    
+    deinit {
+        CrashEye.remove(delegate: self)
     }
     
     override func start() {
