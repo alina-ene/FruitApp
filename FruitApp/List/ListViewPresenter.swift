@@ -12,12 +12,13 @@ protocol ListViewPresentable {
     func rowCount(for section: Int) -> Int
     func text(for rowIndex: Int) -> String?
     var sectionTitle: String { get }
-    var outputMessage: String { get }
+    var stateMessage: String { get }
     var refreshControlMessage: String { get }
     func showDetail(for rowIndex: Int)
     func refreshList()
     var fruitList: [Fruit] { get set }
     var queryManager: QueryManager { get set }
+    var coordinator: AppCoordinator? { get set }
 }
 
 enum ListViewState {
@@ -29,30 +30,29 @@ enum ListViewState {
 class ListViewPresenter: ListViewPresentable {
     
     var refreshControlMessage = "Pull to refresh"
-    var sectionTitle: String = "Fruit Basket"
-    var coordinator: AppCoordinator
+    var sectionTitle = "Fruit Basket"
+    var coordinator: AppCoordinator?
     var fruitList: [Fruit] = [] {
         didSet {
-            coordinator.reloadList()
+            coordinator?.reloadList()
         }
     }
     var queryManager: QueryManager
     var state: ListViewState = .loading {
         didSet {
-            outputMessage = outputMessage(state: state)
-            coordinator.updateOutput()
+            stateMessage = stateMessage(state)
+            coordinator?.updateStateFeedback()
         }
     }
     
-    var outputMessage: String = ""
+    var stateMessage: String = ""
     
-    init(coordinator: AppCoordinator, queryManager: QueryManager) {
-        self.coordinator = coordinator
+    init(queryManager: QueryManager) {
         self.queryManager = queryManager
         refreshList()
     }
     
-    func outputMessage(state: ListViewState) -> String {
+    func stateMessage(_ state: ListViewState) -> String {
         switch state {
         case .resultsLoaded:
             return refreshControlMessage
@@ -81,7 +81,7 @@ class ListViewPresenter: ListViewPresentable {
     }
     
     func text(for rowIndex: Int) -> String? {
-        if rowIndex < fruitList.count {
+        if rowIndex < fruitList.count && rowIndex > -1 {
             return fruitList[rowIndex].type.capitalized
         }
         return nil
@@ -90,7 +90,7 @@ class ListViewPresenter: ListViewPresentable {
     func showDetail(for rowIndex: Int) {
         if rowIndex < fruitList.count {
             let detailPresenter = DetailViewPresenter(fruit: fruitList[rowIndex])
-            coordinator.showDetail(presenter: detailPresenter)
+            coordinator?.showDetail(presenter: detailPresenter)
         }
     }
 }

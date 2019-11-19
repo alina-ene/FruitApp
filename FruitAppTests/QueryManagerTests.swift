@@ -1,15 +1,15 @@
 //
-//  FruitAppTests.swift
+//  QueryManagerTests.swift
 //  FruitAppTests
 //
-//  Created by Alina Ene on 17/11/2019.
+//  Created by Alina Ene on 19/11/2019.
 //  Copyright © 2019 Alina Ene. All rights reserved.
 //
 
 import XCTest
 @testable import FruitApp
 
-class FruitAppTests: XCTestCase {
+class QueryManagerTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

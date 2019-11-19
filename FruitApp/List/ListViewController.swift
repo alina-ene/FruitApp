@@ -24,7 +24,7 @@ class ListViewController: UIViewController, Storyboarded {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-        updateOutput()
+        updateStateFeedback()
     }
     
     @objc func refresh(_ sender: Any) {
@@ -36,9 +36,9 @@ class ListViewController: UIViewController, Storyboarded {
         tableView.reloadData()
     }
     
-    func updateOutput() {
+    func updateStateFeedback() {
         refreshControl.endRefreshing()
-        messageLabel.text = presenter.outputMessage
+        messageLabel.text = presenter.stateMessage
     }
 }
 

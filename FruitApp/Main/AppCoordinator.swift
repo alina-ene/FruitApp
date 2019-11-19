@@ -44,7 +44,8 @@ class AppCoordinator: Coordinator {
     override func start() {
         super.start()
         let vc = ListViewController.instantiate()
-        vc.presenter = ListViewPresenter(coordinator: self, queryManager: queryManager)
+        vc.presenter = ListViewPresenter(queryManager: queryManager)
+        vc.presenter.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
@@ -54,9 +55,9 @@ class AppCoordinator: Coordinator {
         }
     }
     
-    func updateOutput() {
+    func updateStateFeedback() {
         if let listVC = navigationController.viewControllers.first as? ListViewController {
-            listVC.updateOutput()
+            listVC.updateStateFeedback()
         }
     }
     
