@@ -36,26 +36,7 @@ class QueryManager {
     var displayStartDate: Date?
     var displayEndDate: Date? {
         didSet {
-            if let endDate = displayEndDate, let startDate = displayStartDate {
-                let timeIntervalString = String(timeInterval(endDate: endDate, startDate: startDate))
-                displayDispatchGroup.enter()
-                sendStat(event: .display, data: timeIntervalString) { [weak self] (isSuccessful: Bool, errorMessage: String?) in
-                    self?.printStatResponse(isSuccessful, errorMessage, StatEvent.display.rawValue, timeIntervalString)
-                    if let error = errorMessage {
-                        let log = #function + " " + error
-                        
-                        self?.sendStat(event: .error, data: log) { (isSuccessful: Bool, errorMessage: String?) in
-                            self?.printStatResponse(isSuccessful, errorMessage,  StatEvent.error.rawValue, log)
-                            self?.displayDispatchGroup.leave()
-                        }
-                    }
-                    
-                    self?.displayDispatchGroup.notify(queue: DispatchQueue.main) {
-                        self?.displayStartDate = nil
-                        self?.displayEndDate = nil
-                    }
-                }
-            }
+            trackScreenDisplayTransitionTime()
         }
     }
     
@@ -75,7 +56,9 @@ class QueryManager {
                 }
                 let timeIntervalString = String(self?.timeInterval(endDate: Date(), startDate: startDate) ?? 0)
                 self?.sendStat(event: .load, data: timeIntervalString) { (isSuccessful: Bool, errorMessage: String?) in
-                    self?.printStatResponse(isSuccessful, errorMessage, "Fruit Basket load",  timeIntervalString)
+                    if let message = self?.statResponseMessage(isSuccessful, errorMessage, "Fruit Basket load",  timeIntervalString) {
+                        print(message)
+                    }
                     self?.dispatchGroup.leave()
                 }
                 var errorMessage: String?
@@ -93,7 +76,9 @@ class QueryManager {
                     let log = #function + " " + error
                     self?.dispatchGroup.enter()
                     self?.sendStat(event: .error, data: log) { (isSuccessful: Bool, errorMessage: String?) in
-                        self?.printStatResponse(isSuccessful, errorMessage,  StatEvent.error.rawValue, log)
+                        if let message = self?.statResponseMessage(isSuccessful, errorMessage,  StatEvent.error.rawValue, log) {
+                            print(message)
+                        }
                         self?.dispatchGroup.leave()
                     }
                 }
@@ -127,15 +112,44 @@ class QueryManager {
         }
     }
     
+    func trackScreenDisplayTransitionTime() {
+        if let endDate = displayEndDate, let startDate = displayStartDate {
+            let timeIntervalString = String(timeInterval(endDate: endDate, startDate: startDate))
+            displayDispatchGroup.enter()
+            sendStat(event: .display, data: timeIntervalString) { [weak self] (isSuccessful: Bool, errorMessage: String?) in
+                if let message = self?.statResponseMessage(isSuccessful, errorMessage, StatEvent.display.rawValue, timeIntervalString) {
+                    print(message)
+                }
+                if let error = errorMessage {
+                    let log = #function + " " + error
+                    
+                    self?.sendStat(event: .error, data: log) { (isSuccessful: Bool, errorMessage: String?) in
+                        if let message = self?.statResponseMessage(isSuccessful, errorMessage,  StatEvent.error.rawValue, log) {
+                            print(message)
+                        }
+                        self?.displayDispatchGroup.leave()
+                    }
+                }
+                
+                self?.displayDispatchGroup.notify(queue: DispatchQueue.main) {
+                    self?.displayStartDate = nil
+                    self?.displayEndDate = nil
+                }
+            }
+        }
+    }
+    
     func timeInterval(endDate: Date, startDate: Date) -> Int {
         return Int(Double(endDate.timeIntervalSince(startDate)) * 1000)
     }
     
-    func printStatResponse(_ isSuccessful: Bool, _ errorMessage: String?, _ event: String, _ data: String) {
+    func statResponseMessage(_ isSuccessful: Bool, _ errorMessage: String?, _ event: String, _ data: String) -> String {
+        var message = ""
         let output = isSuccessful ? "successfully" : "unsuccessfully"
-        print("\(event) has been \(output) reported - \(data)")
+        message += "\(event) has been \(output) reported - \(data)"
         if let error = errorMessage {
-            print("Error : \(error)")
+            message += "\n Error : \(error)"
         }
+        return message
     }
 }

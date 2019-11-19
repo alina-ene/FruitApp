@@ -22,7 +22,9 @@ extension AppCoordinator: CrashEyeDelegate {
     func crashEyeDidCatchCrash(with model: CrashModel) {
         let data = model.reason ?? "unknown app crash"
         queryManager.sendStat(event: .error, data: data) { [weak self] (isSuccessful: Bool, errorMessage: String?) in
-            self?.queryManager.printStatResponse(isSuccessful, errorMessage, "App crash", data)
+            if let message = self?.queryManager.statResponseMessage(isSuccessful, errorMessage, "App crash", data) {
+                print(message)
+            }
         }
     }
 }

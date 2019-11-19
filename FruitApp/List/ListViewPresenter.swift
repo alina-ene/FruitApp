@@ -81,16 +81,29 @@ class ListViewPresenter: ListViewPresentable {
     }
     
     func text(for rowIndex: Int) -> String? {
-        if rowIndex < fruitList.count && rowIndex > -1 {
-            return fruitList[rowIndex].type.capitalized
+        if let fruit = fruit(at: rowIndex) {
+            return fruit.type.capitalized
         }
         return nil
     }
-
+    
+    func fruit(at index: Int) -> Fruit? {
+        if case 0...fruitList.count-1 = index {
+            return fruitList[index]
+        }
+        return nil
+    }
+    
+    func detailViewPresenter(elementAt index: Int) -> DetailViewPresenter? {
+        if let fruit = fruit(at: index) {
+            return DetailViewPresenter(fruit: fruit)
+        }
+        return nil
+    }
+    
     func showDetail(for rowIndex: Int) {
-        if rowIndex < fruitList.count {
-            let detailPresenter = DetailViewPresenter(fruit: fruitList[rowIndex])
-            coordinator?.showDetail(presenter: detailPresenter)
+        if let dvPresenter = detailViewPresenter(elementAt: rowIndex) {
+            coordinator?.showDetail(presenter: dvPresenter)
         }
     }
 }
