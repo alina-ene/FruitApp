@@ -17,15 +17,19 @@ class DetailViewPresenterTests: XCTestCase {
         detailViewPresenter = DetailViewPresenter(fruit: Fruit(type: "apple", price: 233, weight: 122))
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testTextForIndex() {
+        XCTAssertNil(detailViewPresenter.text(for: -1), "Nil text value for element at negative index")
+        XCTAssertNil(detailViewPresenter.text(for: 5), "Nil text value for element outside of range")
+        XCTAssert(detailViewPresenter.text(for: 0) == "APPLE", "APPLE is the first element to be displayed")
+        XCTAssert(detailViewPresenter.text(for: 1) == "£2.33", "£2.33 is displayed second")
+        XCTAssert(detailViewPresenter.text(for: 2) == "0.122KG", "1.22KG is displayed third")
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testNumberOfLabelsDisplayed() {
+        
+        XCTAssert(detailViewPresenter.fruitDetailCount == 3, "Detail screen displays a set number of labels for the fruit")
     }
-
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
