@@ -94,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC435FC42383F3E100937135 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
+				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		AC8CEBB523815F9400944A90 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +126,7 @@
 		AC8CEBC023815F9400944A90 /* FruitApp */ = {
 			isa = PBXGroup;
 			children = (
+				ACFD5FD82383F30900EE3460 /* Helpers */,
 				AC8CEC042381DA5800944A90 /* Resources */,
 				AC8CEC032381D9FB00944A90 /* List */,
 				AC8CEC022381D9C000944A90 /* Detail */,
@@ -148,11 +158,8 @@
 			children = (
 				AC8CEBC123815F9400944A90 /* AppDelegate.swift */,
 				AC8CEBC323815F9400944A90 /* SceneDelegate.swift */,
-				AC8CEBF323818C7300944A90 /* Storyboarded.swift */,
 				AC8CEBF123818BE700944A90 /* AppCoordinator.swift */,
-				AC8CEBFB23819E3800944A90 /* QueryManager.swift */,
-				AC536F182382CA3A0060300B /* CrashEye.swift */,
-				AC8CEBFD23819E7400944A90 /* Fruit.swift */,
+				AC435FC42383F3E100937135 /* Data */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -185,6 +192,15 @@
 				AC8CEBCA23815F9700944A90 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		ACFD5FD82383F30900EE3460 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AC8CEBF323818C7300944A90 /* Storyboarded.swift */,
+				AC536F182382CA3A0060300B /* CrashEye.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
