@@ -31,16 +31,29 @@ class QueryManager {
     typealias FruitBasketQueryResult = (FruitBasket?, String?) -> Void
     typealias StatQueryResult = (Bool, String?) -> Void
     let defaultSession = URLSession(configuration: .default)
-    
+    let dispatchGroup = DispatchGroup()
+    let displayDispatchGroup = DispatchGroup()
     var displayStartDate: Date?
     var displayEndDate: Date? {
         didSet {
             if let endDate = displayEndDate, let startDate = displayStartDate {
                 let timeIntervalString = String(timeInterval(endDate: endDate, startDate: startDate))
+                displayDispatchGroup.enter()
                 sendStat(event: .display, data: timeIntervalString) { [weak self] (isSuccessful: Bool, errorMessage: String?) in
                     self?.printStatResponse(isSuccessful, errorMessage, StatEvent.display.rawValue, timeIntervalString)
-                    self?.displayStartDate = nil
-                    self?.displayEndDate = nil
+                    if let error = errorMessage {
+                        let log = #function + " " + error
+                        
+                        self?.sendStat(event: .error, data: log) { (isSuccessful: Bool, errorMessage: String?) in
+                            self?.printStatResponse(isSuccessful, errorMessage,  StatEvent.error.rawValue, log)
+                            self?.displayDispatchGroup.leave()
+                        }
+                    }
+                    
+                    self?.displayDispatchGroup.notify(queue: DispatchQueue.main) {
+                        self?.displayStartDate = nil
+                        self?.displayEndDate = nil
+                    }
                 }
             }
         }
@@ -54,7 +67,7 @@ class QueryManager {
                 return
             }
             let startDate = Date()
-            let dispatchGroup = DispatchGroup()
+            
             dispatchGroup.enter()
             dataTask = defaultSession.dataTask(with: url) { [weak self] data, response, error in
                 defer {
@@ -63,30 +76,29 @@ class QueryManager {
                 let timeIntervalString = String(self?.timeInterval(endDate: Date(), startDate: startDate) ?? 0)
                 self?.sendStat(event: .load, data: timeIntervalString) { (isSuccessful: Bool, errorMessage: String?) in
                     self?.printStatResponse(isSuccessful, errorMessage, "Fruit Basket load",  timeIntervalString)
-                    dispatchGroup.leave()
+                    self?.dispatchGroup.leave()
                 }
                 var errorMessage: String?
                 var basket: FruitBasket?
                 if let error = error {
-                    errorMessage = "Request error: " + error.localizedDescription
+                    errorMessage = error.localizedDescription
                 } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     do {
                         basket = try JSONDecoder().decode(FruitBasket.self, from: data)
                     } catch let parseError as NSError {
-                        errorMessage = "JSONSerialization error: \(parseError.localizedDescription)\n"
+                        errorMessage = parseError.localizedDescription
                     }
                 }
                 if let error = errorMessage {
                     let log = #function + " " + error
+                    self?.dispatchGroup.enter()
                     self?.sendStat(event: .error, data: log) { (isSuccessful: Bool, errorMessage: String?) in
                         self?.printStatResponse(isSuccessful, errorMessage,  StatEvent.error.rawValue, log)
-                        dispatchGroup.leave()
+                        self?.dispatchGroup.leave()
                     }
                 }
-                dispatchGroup.notify(queue: DispatchQueue.global()) {
-                    DispatchQueue.main.async {
-                        completion(basket, errorMessage)
-                    }
+                self?.dispatchGroup.notify(queue: DispatchQueue.main) {
+                    completion(basket, errorMessage)
                 }
             }
             

@@ -54,6 +54,12 @@ class AppCoordinator: Coordinator {
         }
     }
     
+    func updateOutput() {
+        if let listVC = navigationController.viewControllers.first as? ListViewController {
+            listVC.updateOutput()
+        }
+    }
+    
     func showDetail(presenter: DetailViewPresentable) {
         let vc = DetailViewController.instantiate()
         vc.presenter = presenter

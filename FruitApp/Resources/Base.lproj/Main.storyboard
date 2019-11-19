@@ -62,17 +62,31 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Q4t-uZ-oWg"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euQ-qQ-edz">
+                                <rect key="frame" x="0.0" y="846" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="0.55666738013698636" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="sBd-nD-UyX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="euQ-qQ-edz" secondAttribute="trailing" id="P5t-61-ols"/>
+                            <constraint firstAttribute="bottom" secondItem="euQ-qQ-edz" secondAttribute="bottom" id="cmZ-gW-Ti3"/>
                             <constraint firstItem="CPM-dw-JgX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gol-31-uF4"/>
                             <constraint firstAttribute="bottom" secondItem="CPM-dw-JgX" secondAttribute="bottom" id="iAB-f3-SPk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CPM-dw-JgX" secondAttribute="trailing" id="n3q-tv-by7"/>
+                            <constraint firstItem="euQ-qQ-edz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vaV-mr-fEx"/>
                             <constraint firstItem="CPM-dw-JgX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="44" id="yo8-Xt-baF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="messageLabel" destination="euQ-qQ-edz" id="Rjx-4E-kil"/>
                         <outlet property="tableView" destination="CPM-dw-JgX" id="eEp-lH-itF"/>
                     </connections>
                 </viewController>

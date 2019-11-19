@@ -11,6 +11,7 @@ import UIKit
 class ListViewController: UIViewController, Storyboarded {
     
     @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var messageLabel: UILabel!
     var presenter: ListViewPresentable!
     private var refreshControl = UIRefreshControl()
     
@@ -22,6 +23,8 @@ class ListViewController: UIViewController, Storyboarded {
         refreshControl.attributedTitle = NSAttributedString(string: presenter.refreshControlMessage)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        updateOutput()
     }
     
     @objc func refresh(_ sender: Any) {
@@ -31,6 +34,11 @@ class ListViewController: UIViewController, Storyboarded {
     func reloadList() {
         refreshControl.endRefreshing()
         tableView.reloadData()
+    }
+    
+    func updateOutput() {
+        refreshControl.endRefreshing()
+        messageLabel.text = presenter.outputMessage
     }
 }
 

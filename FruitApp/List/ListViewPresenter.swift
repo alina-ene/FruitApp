@@ -12,11 +12,18 @@ protocol ListViewPresentable {
     func rowCount(for section: Int) -> Int
     func text(for rowIndex: Int) -> String?
     var sectionTitle: String { get }
+    var outputMessage: String { get }
     var refreshControlMessage: String { get }
     func showDetail(for rowIndex: Int)
     func refreshList()
     var fruitList: [Fruit] { get set }
     var queryManager: QueryManager { get set }
+}
+
+enum ListViewState {
+    case resultsLoaded
+    case loading
+    case error
 }
 
 class ListViewPresenter: ListViewPresentable {
@@ -30,6 +37,14 @@ class ListViewPresenter: ListViewPresentable {
         }
     }
     var queryManager: QueryManager
+    var state: ListViewState = .loading {
+        didSet {
+            outputMessage = outputMessage(state: state)
+            coordinator.updateOutput()
+        }
+    }
+    
+    var outputMessage: String = ""
     
     init(coordinator: AppCoordinator, queryManager: QueryManager) {
         self.coordinator = coordinator
@@ -37,10 +52,26 @@ class ListViewPresenter: ListViewPresentable {
         refreshList()
     }
     
+    func outputMessage(state: ListViewState) -> String {
+        switch state {
+        case .resultsLoaded:
+            return refreshControlMessage
+        case .loading:
+            return "Loading..."
+        case .error:
+            return "Something went wrong. Pull to refresh"
+        }
+    }
+    
     func refreshList() {
+        state = .loading
         queryManager.loadFruitList { (fruitBasket: FruitBasket?, errorMessage: String?) in
             if let basket = fruitBasket {
                 self.fruitList = basket.fruit
+                self.state = .resultsLoaded
+            }
+            if let _ = errorMessage {
+                self.state = .error
             }
         }
     }
