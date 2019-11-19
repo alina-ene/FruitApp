@@ -88,6 +88,7 @@ class ListViewPresenter: ListViewPresentable {
     }
     
     func fruit(at index: Int) -> Fruit? {
+        guard fruitList.count > 0 else { return nil }
         if case 0...fruitList.count-1 = index {
             return fruitList[index]
         }

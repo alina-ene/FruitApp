@@ -47,7 +47,7 @@ class QueryManagerTests: XCTestCase {
         queryManager.loadFruitList { (_, _) in
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
 //        XCTAssertEqual(scaledImages?.count, originalImages.count)
     }
     

@@ -29,12 +29,5 @@ class DetailViewPresenterTests: XCTestCase {
         
         XCTAssert(detailViewPresenter.fruitDetailCount == 3, "Detail screen displays a set number of labels for the fruit")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }

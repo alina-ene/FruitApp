@@ -18,7 +18,6 @@
 		AC8CEBCB23815F9700944A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC8CEBCA23815F9700944A90 /* Assets.xcassets */; };
 		AC8CEBCE23815F9700944A90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC8CEBCC23815F9700944A90 /* LaunchScreen.storyboard */; };
 		AC8CEBD923815F9800944A90 /* ListViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBD823815F9800944A90 /* ListViewPresenterTests.swift */; };
-		AC8CEBE423815F9800944A90 /* FruitAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBE323815F9800944A90 /* FruitAppUITests.swift */; };
 		AC8CEBF223818BE700944A90 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF123818BE700944A90 /* AppCoordinator.swift */; };
 		AC8CEBF423818C7300944A90 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF323818C7300944A90 /* Storyboarded.swift */; };
 		AC8CEBF623818F3600944A90 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8CEBF523818F3600944A90 /* DetailViewController.swift */; };
@@ -31,13 +30,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		AC8CEBD523815F9800944A90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AC8CEBB623815F9400944A90 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AC8CEBBD23815F9400944A90;
-			remoteInfo = FruitApp;
-		};
-		AC8CEBE023815F9800944A90 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AC8CEBB623815F9400944A90 /* Project object */;
 			proxyType = 1;
@@ -62,9 +54,6 @@
 		AC8CEBD423815F9800944A90 /* FruitAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FruitAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8CEBD823815F9800944A90 /* ListViewPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresenterTests.swift; sourceTree = "<group>"; };
 		AC8CEBDA23815F9800944A90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC8CEBDF23815F9800944A90 /* FruitAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FruitAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC8CEBE323815F9800944A90 /* FruitAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitAppUITests.swift; sourceTree = "<group>"; };
-		AC8CEBE523815F9800944A90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC8CEBF123818BE700944A90 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		AC8CEBF323818C7300944A90 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		AC8CEBF523818F3600944A90 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -90,13 +79,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC8CEBDC23815F9800944A90 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -114,7 +96,6 @@
 			children = (
 				AC8CEBC023815F9400944A90 /* FruitApp */,
 				AC8CEBD723815F9800944A90 /* FruitAppTests */,
-				AC8CEBE223815F9800944A90 /* FruitAppUITests */,
 				AC8CEBBF23815F9400944A90 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,7 +105,6 @@
 			children = (
 				AC8CEBBE23815F9400944A90 /* FruitApp.app */,
 				AC8CEBD423815F9800944A90 /* FruitAppTests.xctest */,
-				AC8CEBDF23815F9800944A90 /* FruitAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,15 +130,6 @@
 				AC8CEBDA23815F9800944A90 /* Info.plist */,
 			);
 			path = FruitAppTests;
-			sourceTree = "<group>";
-		};
-		AC8CEBE223815F9800944A90 /* FruitAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AC8CEBE323815F9800944A90 /* FruitAppUITests.swift */,
-				AC8CEBE523815F9800944A90 /* Info.plist */,
-			);
-			path = FruitAppUITests;
 			sourceTree = "<group>";
 		};
 		AC8CEC012381D9A200944A90 /* Main */ = {
@@ -250,24 +221,6 @@
 			productReference = AC8CEBD423815F9800944A90 /* FruitAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AC8CEBDE23815F9800944A90 /* FruitAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AC8CEBEE23815F9800944A90 /* Build configuration list for PBXNativeTarget "FruitAppUITests" */;
-			buildPhases = (
-				AC8CEBDB23815F9800944A90 /* Sources */,
-				AC8CEBDC23815F9800944A90 /* Frameworks */,
-				AC8CEBDD23815F9800944A90 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AC8CEBE123815F9800944A90 /* PBXTargetDependency */,
-			);
-			name = FruitAppUITests;
-			productName = FruitAppUITests;
-			productReference = AC8CEBDF23815F9800944A90 /* FruitAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -282,10 +235,6 @@
 						CreatedOnToolsVersion = 11.1;
 					};
 					AC8CEBD323815F9800944A90 = {
-						CreatedOnToolsVersion = 11.1;
-						TestTargetID = AC8CEBBD23815F9400944A90;
-					};
-					AC8CEBDE23815F9800944A90 = {
 						CreatedOnToolsVersion = 11.1;
 						TestTargetID = AC8CEBBD23815F9400944A90;
 					};
@@ -306,7 +255,6 @@
 			targets = (
 				AC8CEBBD23815F9400944A90 /* FruitApp */,
 				AC8CEBD323815F9800944A90 /* FruitAppTests */,
-				AC8CEBDE23815F9800944A90 /* FruitAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -324,13 +272,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AC8CEBD223815F9800944A90 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AC8CEBDD23815F9800944A90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -369,14 +310,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC8CEBDB23815F9800944A90 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AC8CEBE423815F9800944A90 /* FruitAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -384,11 +317,6 @@
 			isa = PBXTargetDependency;
 			target = AC8CEBBD23815F9400944A90 /* FruitApp */;
 			targetProxy = AC8CEBD523815F9800944A90 /* PBXContainerItemProxy */;
-		};
-		AC8CEBE123815F9800944A90 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AC8CEBBD23815F9400944A90 /* FruitApp */;
-			targetProxy = AC8CEBE023815F9800944A90 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -606,46 +534,6 @@
 			};
 			name = Release;
 		};
-		AC8CEBEF23815F9800944A90 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 676VA3E69T;
-				INFOPLIST_FILE = FruitAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alinaene.FruitAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FruitApp;
-			};
-			name = Debug;
-		};
-		AC8CEBF023815F9800944A90 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 676VA3E69T;
-				INFOPLIST_FILE = FruitAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alinaene.FruitAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FruitApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,15 +560,6 @@
 			buildConfigurations = (
 				AC8CEBEC23815F9800944A90 /* Debug */,
 				AC8CEBED23815F9800944A90 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AC8CEBEE23815F9800944A90 /* Build configuration list for PBXNativeTarget "FruitAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AC8CEBEF23815F9800944A90 /* Debug */,
-				AC8CEBF023815F9800944A90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
