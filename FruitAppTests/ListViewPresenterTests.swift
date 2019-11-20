@@ -23,7 +23,7 @@ class ListViewPresenterTests: XCTestCase {
     }
 
     func testStateMessage() {
-        XCTAssert(listViewPresenter.stateMessage == "Loading...", "State message has Loading ... as an initial value")
+        XCTAssert(listViewPresenter.stateMessage == "Loading...", "State message should have Loading ... as an initial value")
         listViewPresenter.state = .error
         XCTAssert(listViewPresenter.stateMessage == "Something went wrong. Pull to refresh", "State message when an error occurs")
         listViewPresenter.state = .resultsLoaded
@@ -40,24 +40,24 @@ class ListViewPresenterTests: XCTestCase {
     
     func testRowCountForSection() {
         listViewPresenter.fruitList = []
-        XCTAssert(listViewPresenter.rowCount(for: 0) == 0, "Row count for empty list, first section")
-        XCTAssert(listViewPresenter.rowCount(for: 1) == 0, "Row count for empty list, second section")
-        XCTAssert(listViewPresenter.rowCount(for: -1) == 0, "Row count for empty list, invalid section number")
+        XCTAssert(listViewPresenter.rowCount(for: 0) == 0, "Expected 0 Row count for empty list, first section")
+        XCTAssert(listViewPresenter.rowCount(for: 1) == 0, "Expected 0 Row count for empty list, second section")
+        XCTAssert(listViewPresenter.rowCount(for: -1) == 0, "Expected 0 Row count for empty list, invalid section number")
         listViewPresenter.fruitList = fruitList
-        XCTAssert(listViewPresenter.rowCount(for: 0) == 2, "Row count for list with 2 elements, first section")
-        XCTAssert(listViewPresenter.rowCount(for: 1) == 2, "Row count for list with 2 elements, second section")
-        XCTAssert(listViewPresenter.rowCount(for: -1) == 2, "Row count for list with 2 elements, invalid section number")
+        XCTAssert(listViewPresenter.rowCount(for: 0) == 2, "Expected: 2 Row count for list with 2 elements, first section")
+        XCTAssert(listViewPresenter.rowCount(for: 1) == 2, "Expected: 2 Row count for list with 2 elements, second section")
+        XCTAssert(listViewPresenter.rowCount(for: -1) == 2, "Expected: 2 Row count for list with 2 elements, invalid section number")
     }
     
     func testTextForRowIndex() {
         listViewPresenter.fruitList = []
-        XCTAssertNil(listViewPresenter.text(for: 0), "Nil text value for empty list")
+        XCTAssertNil(listViewPresenter.text(for: 0), "Expected Nil text value for empty list")
         
         listViewPresenter.fruitList = fruitList
-        XCTAssertNil(listViewPresenter.text(for: -1), "Nil text value for element at negative index")
-        XCTAssertNil(listViewPresenter.text(for: 5), "Nil text value for element outside of range")
-        XCTAssert(listViewPresenter.text(for: 0) == "Apple", "Apple is the first element to be displayed in the list")
-        XCTAssert(listViewPresenter.text(for: 1) == "Watermelon", "Watermelon is the first element to be displayed in the list")
+        XCTAssertNil(listViewPresenter.text(for: -1), "Expected Nil text value for element at negative index")
+        XCTAssertNil(listViewPresenter.text(for: 5), "Expected Nil text value for element outside of range")
+        XCTAssert(listViewPresenter.text(for: 0) == "Apple", "Apple should be the first element to be displayed in the list")
+        XCTAssert(listViewPresenter.text(for: 1) == "Watermelon", "Watermelon should be the first element to be displayed in the list")
     }
 
     func testRefreshListTime() {
@@ -67,4 +67,12 @@ class ListViewPresenterTests: XCTestCase {
         }
     }
 
+    func testDetailViewPresenterForelementAtIndex() {
+        listViewPresenter.fruitList = []
+        XCTAssertNil(listViewPresenter.detailViewPresenter(elementAt: 0), "Should return nil when accessing any element in an empty list")
+        
+        listViewPresenter.fruitList = fruitList
+        XCTAssertNil(listViewPresenter.detailViewPresenter(elementAt: -1), "Should return nil when accessing any element outside of the range of the list")
+        XCTAssertNotNil(listViewPresenter.detailViewPresenter(elementAt: 0), "Should not return nil when accessing any element inside the range of the list")
+    }
 }
