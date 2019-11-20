@@ -74,11 +74,11 @@ class AppCoordinator: Coordinator {
 extension AppCoordinator: UINavigationControllerDelegate {
    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        queryManager.displayStartDate = Date()
+        queryManager.performScreenTransitionOperations(hasStarted: true)
     }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        queryManager.displayEndDate = Date()
+        queryManager.performScreenTransitionOperations(hasStarted: false)
     }
     
 }

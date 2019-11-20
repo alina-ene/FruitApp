@@ -34,11 +34,7 @@ class QueryManager {
     let dispatchGroup = DispatchGroup()
     let displayDispatchGroup = DispatchGroup()
     var displayStartDate: Date?
-    var displayEndDate: Date? {
-        didSet {
-            trackScreenDisplayTransitionTime()
-        }
-    }
+    var displayEndDate: Date?
     
     func loadFruitList(completion: @escaping FruitBasketQueryResult) {
         dataTask?.cancel()
@@ -112,7 +108,7 @@ class QueryManager {
         }
     }
     
-    func trackScreenDisplayTransitionTime() {
+    func trackScreenDisplayTransitionTime(completion: @escaping StatQueryResult) {
         if let endDate = displayEndDate, let startDate = displayStartDate {
             let timeIntervalString = String(timeInterval(endDate: endDate, startDate: startDate))
             displayDispatchGroup.enter()
@@ -131,10 +127,9 @@ class QueryManager {
                     }
                 }
                 
-                self?.displayDispatchGroup.notify(queue: DispatchQueue.main) {
-                    self?.displayStartDate = nil
-                    self?.displayEndDate = nil
-                }
+//                self?.displayDispatchGroup.notify(queue: DispatchQueue.global()) {
+                    completion(isSuccessful, errorMessage)
+//                }
             }
         }
     }
@@ -151,5 +146,17 @@ class QueryManager {
             message += "\n Error : \(error)"
         }
         return message
+    }
+    
+    func performScreenTransitionOperations(hasStarted: Bool) {
+        if hasStarted {
+            displayStartDate = Date()
+        } else {
+            displayEndDate = Date()
+            trackScreenDisplayTransitionTime(completion: { [weak self] (_,_) in
+                self?.displayStartDate = nil
+                self?.displayEndDate = nil
+            })
+        }
     }
 }
